@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
-@Service
+@Service(value = "PairsAlgorithm")
 public class PairsAlgorithm implements Algorithm {
     @Override
     public float compare(String str1, String str2) {

@@ -3,7 +3,7 @@ package in.arod.addressNormalizer.service.impl;
 import in.arod.addressNormalizer.service.Algorithm;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service(value = "LevenshatinCaseIgnoreAlgorithm")
 public class LevenshatinCaseIgnoreAlgorithm implements Algorithm {
     @Override
     public float compare(String stringOne, String stringTwo) {

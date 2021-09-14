@@ -3,7 +3,7 @@ package in.arod.addressNormalizer.service.impl;
 import in.arod.addressNormalizer.service.Algorithm;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service(value = "LevenshatinAlgorithm")
 public class LevenshatinAlgorithm implements Algorithm {
     @Override
     public float compare(String s1, String s2) {
