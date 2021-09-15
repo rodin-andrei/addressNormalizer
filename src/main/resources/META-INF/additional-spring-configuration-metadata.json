@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "algorithmes.active",
+      "type": "java.lang.String",
+      "description": "Description for algorithmes.active."
+    }
+  ] }

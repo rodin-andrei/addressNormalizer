@@ -1,9 +1,13 @@
 package in.arod.addressNormalizer.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class OriginalAddress {
+@Data
+public class OriginalAddress implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

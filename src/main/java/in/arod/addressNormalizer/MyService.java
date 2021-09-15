@@ -31,12 +31,12 @@ public class MyService {
                     try {
                         Algorithm algorithm = algorithms.get(algoName);
                         float compareResult = algorithm.compare(s1, s2);
-                        System.out.printf("%30s %30s  %30s  %f \n", algoName, s1, s2, compareResult);
-                    }catch (Exception e){
-                        System.err.printf("%30s %25s  %25s  \n", algoName, s1, s2);
+                        if (compareResult <= algorithm.getMax() && compareResult >= algorithm.getMin())
+                            System.out.printf("%30s %30s  %30s  %f \n", algoName, s1, s2, compareResult);
+                    } catch (Exception e) {
+//                        System.err.printf("%30s %25s  %25s  \n", algoName, s1, s2);
                     }
                 });
-                System.out.println();
             }
         }
     }

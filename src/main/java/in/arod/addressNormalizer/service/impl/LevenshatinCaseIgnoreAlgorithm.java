@@ -1,10 +1,16 @@
 package in.arod.addressNormalizer.service.impl;
 
 import in.arod.addressNormalizer.service.Algorithm;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service(value = "LevenshatinCaseIgnoreAlgorithm")
 public class LevenshatinCaseIgnoreAlgorithm implements Algorithm {
+    @Value("#{'${algorithmes.LevenshatinCaseIgnoreAlgorithm.max}'}")
+    public float max;
+    @Value("#{'${algorithmes.LevenshatinCaseIgnoreAlgorithm.min}'}")
+    public float min;
+
     @Override
     public float compare(String stringOne, String stringTwo) {
         // if we want to ignore case sensitivity, lower case the strings
@@ -45,5 +51,14 @@ public class LevenshatinCaseIgnoreAlgorithm implements Algorithm {
         }
 
         return deltaM[m][n];
+    }
+    @Override
+    public float getMax() {
+        return max;
+    }
+
+    @Override
+    public float getMin() {
+        return min;
     }
 }

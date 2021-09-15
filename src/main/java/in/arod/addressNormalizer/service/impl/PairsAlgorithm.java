@@ -1,12 +1,19 @@
 package in.arod.addressNormalizer.service.impl;
 
 import in.arod.addressNormalizer.service.Algorithm;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
 @Service(value = "PairsAlgorithm")
 public class PairsAlgorithm implements Algorithm {
+    @Value("#{'${algorithmes.PairsAlgorithm.max}'}")
+    public float max;
+    @Value("#{'${algorithmes.PairsAlgorithm.min}'}")
+    public float min;
+
+
     @Override
     public float compare(String str1, String str2) {
         ArrayList pairs1 = wordLetterPairs(str1.toUpperCase());
@@ -30,7 +37,7 @@ public class PairsAlgorithm implements Algorithm {
     /**
      * @return an array of adjacent letter pairs contained in the input string
      */
-    private  String[] letterPairs(String str) {
+    private String[] letterPairs(String str) {
         int numPairs = str.length() - 1;
         String[] pairs = new String[numPairs];
         for (int i = 0; i < numPairs; i++) {
@@ -44,7 +51,7 @@ public class PairsAlgorithm implements Algorithm {
     /**
      * @return an ArrayList of 2-character Strings.
      */
-    private  ArrayList wordLetterPairs(String str) {
+    private ArrayList wordLetterPairs(String str) {
         ArrayList allPairs = new ArrayList();
         // Tokenize the string and put the tokens/words into an array
         String[] words = str.split("\\s");
@@ -57,5 +64,15 @@ public class PairsAlgorithm implements Algorithm {
             }
         }
         return allPairs;
+    }
+
+    @Override
+    public float getMax() {
+        return max;
+    }
+
+    @Override
+    public float getMin() {
+        return min;
     }
 }

@@ -1,15 +1,22 @@
 package in.arod.addressNormalizer.service.impl;
 
 import in.arod.addressNormalizer.service.Algorithm;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service(value = "LevenshatinAlgorithm")
 public class LevenshatinAlgorithm implements Algorithm {
+    @Value("#{'${algorithmes.LevenshatinAlgorithm.max}'}")
+    public float max;
+    @Value("#{'${algorithmes.LevenshatinAlgorithm.min}'}")
+    public float min;
+
     @Override
     public float compare(String s1, String s2) {
-       return    levenstain(s1, s2);
+        return levenstain(s1, s2);
     }
-    public  int levenstain(String str1, String str2) {
+
+    public int levenstain(String str1, String str2) {
         int[] Di_1 = new int[str2.length() + 1];
         int[] Di = new int[str2.length() + 1];
 
@@ -34,7 +41,17 @@ public class LevenshatinAlgorithm implements Algorithm {
         return Di[Di.length - 1];
     }
 
-    private  int min(int n1, int n2, int n3) {
+    private int min(int n1, int n2, int n3) {
         return Math.min(Math.min(n1, n2), n3);
+    }
+
+    @Override
+    public float getMax() {
+        return max;
+    }
+
+    @Override
+    public float getMin() {
+        return min;
     }
 }
