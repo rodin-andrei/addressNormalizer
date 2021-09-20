@@ -1,6 +1,5 @@
 package in.arod.addressNormalizer.repository.street;
 
-import in.arod.addressNormalizer.model.city.AlternativeCityName;
 import in.arod.addressNormalizer.model.street.AlternativeStreetName;
 import org.springframework.data.jpa.repository.JpaRepository;
 

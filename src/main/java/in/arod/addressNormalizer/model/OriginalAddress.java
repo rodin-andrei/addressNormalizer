@@ -1,12 +1,18 @@
 package in.arod.addressNormalizer.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class OriginalAddress implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,6 +52,6 @@ public class OriginalAddress implements Serializable {
     private String statuttelefon;
 
     @Column(name = "proprietartelefon")
-    private String proprietartelefon;
+    private String num;
 
 }
