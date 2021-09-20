@@ -89,5 +89,19 @@ public class AddressController {
         return save;
     }
 
+    @GetMapping(path = "makeOriginalCityName")
+    public OriginalCityName makeOriginalCityName(@RequestParam long id) {
+        AlternativeCityName alternativeCityName = alternativeCityNameRepository
+                .findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Not found alternative city by id " + id));
 
+        OriginalCityName originalCityName = alternativeCityName.getOriginalCityName();
+        String oldOriginalCityNameTitle = originalCityName.getTitle();
+        originalCityName.setTitle(alternativeCityName.getTitle());
+        alternativeCityName.setTitle(oldOriginalCityNameTitle);
+        alternativeCityNameRepository.save(alternativeCityName);
+        OriginalCityName save = originalCityNameRepository.save(originalCityName);
+        log.info("makeOriginalCityName: " + save.getId() + "(title: " + save.getTitle() + ")");
+        return save;
+    }
 }
