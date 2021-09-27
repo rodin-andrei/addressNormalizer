@@ -25,4 +25,5 @@ public class AlternativeCityName {
 
     @Column(unique = true)
     private String title;
+
 }

@@ -1,21 +1,21 @@
 package in.arod.addressNormalizer.model;
 
 public interface CorrectTable {
-    long getID();
-    long getPOST_CODE();
-    String getDISTRICT();
-    String getTYPE_CITY();
-    String getCITY();
-    String getTYPE_STREET();
-    String getSTREET();
-    String getHOUSE();
-    String getFLAT();
-    String getSTATUT_ADRESA();
-    String getPHONE_NUMBER();
-    String getSTATUT_TELEFON();
-    String getPROPRIETAR_TELEFON();
-    String getCORRECT_CITY_NAME();
-    String getCORRECT_CITY_TYPE();
-    String getCORRECT_STREET_NAME();
-    String getCORRECT_STREET_TYPE();
+    Long getID();
+    String getPost_Code();
+    String getDistrict();
+    String getType_City();
+    String getCity();
+    String getType_Street();
+    String getStreet();
+    String getHouse();
+    String getFlat();
+    String getStatut_Adresa();
+    String getPhone_Number();
+    String getStatut_Telefon();
+    String getProprietar_Telefon();
+    String getCorrect_City_Name();
+    String getCorrect_City_Type();
+    String getCorrect_Street_Name();
+    String getCorrect_Street_Type();
 }

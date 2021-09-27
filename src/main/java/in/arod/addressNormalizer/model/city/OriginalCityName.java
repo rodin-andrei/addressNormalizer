@@ -10,7 +10,6 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class OriginalCityName {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
