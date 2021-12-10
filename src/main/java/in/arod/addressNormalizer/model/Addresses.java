@@ -13,10 +13,10 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OriginalAddress implements Serializable {
+public class Addresses implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long ID;
 
     @Column(name = "PostCode")
     private String PostCode;
@@ -41,17 +41,4 @@ public class OriginalAddress implements Serializable {
 
     @Column(name = "Flat")
     private String Flat;
-
-    @Column(name = "statutADRESA")
-    private String statutADRESA;
-
-    @Column(name = "PhoneNumber")
-    private String PhoneNumber;
-
-    @Column(name = "statuttelefon")
-    private String statuttelefon;
-
-    @Column(name = "proprietartelefon")
-    private String num;
-
 }

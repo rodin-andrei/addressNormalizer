@@ -72,10 +72,6 @@ public class AddressController {
                 filter_correct_Street_Type,
                 filter_house,
                 filter_flat,
-                filter_statut_Adresa,
-                filter_phone_Number,
-                filter_statut_Telefon,
-                filter_proprietar_Telefon,
                 PageRequest.of(pageNumber, sizeNumber, Sort.by("id")));
     }
 
