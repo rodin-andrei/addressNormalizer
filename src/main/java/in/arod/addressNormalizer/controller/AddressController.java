@@ -1,6 +1,7 @@
 package in.arod.addressNormalizer.controller;
 
 import in.arod.addressNormalizer.controller.dto.OriginaObjectDto;
+import in.arod.addressNormalizer.model.Addresses;
 import in.arod.addressNormalizer.model.CorrectTable;
 import in.arod.addressNormalizer.model.city.AlternativeCityName;
 import in.arod.addressNormalizer.model.city.AlternativeCityType;
@@ -62,7 +63,7 @@ public class AddressController {
                                            @RequestParam String filter_correct_City_Name,
                                            @RequestParam String filter_correct_Street_Name,
                                            @RequestParam String filter_correct_Street_Type) {
-        
+
         return originalAddressRepository.findCorrectTableWithPagination(filter_id,
                 filter_post_Code,
                 filter_district,
@@ -79,10 +80,12 @@ public class AddressController {
     public Page<OriginalCityName> getOriginalCityNames(@RequestParam int pageNumber, @RequestParam int sizeNumber) {
         return originalCityNameRepository.findAll(PageRequest.of(pageNumber, sizeNumber));
     }
+
     @GetMapping(path = "getUniqueOriginalCityNames")
     public List<OriginaObjectDto> getUniqueOriginalCityNames() {
         return this.originalCityNameRepository.getUniqueOriginalCityNames();
     }
+
     @GetMapping(path = "removeAlternativeCityName")
     public void removeAlternativeCityName(@RequestParam long id) {
         alternativeCityNameRepository.deleteById(id);
@@ -158,17 +161,16 @@ public class AddressController {
     }
 
 
-
-
-
     @GetMapping(path = "getOriginalCityTypes")
     public Page<OriginalCityType> getOriginalCityTypes(@RequestParam int pageNumber, @RequestParam int sizeNumber) {
         return originalCityTypeRepository.findAll(PageRequest.of(pageNumber, sizeNumber));
     }
+
     @GetMapping(path = "getUniqueOriginalCityTypes")
     public List<OriginaObjectDto> getUniqueOriginalCityTypes() {
         return this.originalCityTypeRepository.getUniqueOriginalCityTypes();
     }
+
     @GetMapping(path = "removeAlternativeCityType")
     public void removeAlternativeCityType(@RequestParam long id) {
         alternativeCityTypeRepository.deleteById(id);
@@ -244,38 +246,16 @@ public class AddressController {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @GetMapping(path = "getOriginalStreetNames")
     public Page<OriginalStreetName> getOriginalStreetNames(@RequestParam int pageNumber, @RequestParam int sizeNumber) {
         return originalStreetNameRepository.findAll(PageRequest.of(pageNumber, sizeNumber));
     }
+
     @GetMapping(path = "getUniqueOriginalStreetNames")
     public List<OriginaObjectDto> getUniqueOriginalStreetNames() {
         return this.originalStreetNameRepository.getUniqueOriginalStreetNames();
     }
+
     @GetMapping(path = "removeAlternativeStreetName")
     public void removeAlternativeStreetName(@RequestParam long id) {
         alternativeStreetNameRepository.deleteById(id);
@@ -351,17 +331,16 @@ public class AddressController {
     }
 
 
-
-
-
     @GetMapping(path = "getOriginalStreetTypes")
     public Page<OriginalStreetType> getOriginalStreetTypes(@RequestParam int pageNumber, @RequestParam int sizeNumber) {
         return originalStreetTypeRepository.findAll(PageRequest.of(pageNumber, sizeNumber));
     }
+
     @GetMapping(path = "getUniqueOriginalStreetTypes")
     public List<OriginaObjectDto> getUniqueOriginalStreetTypes() {
         return this.originalStreetTypeRepository.getUniqueOriginalStreetTypes();
     }
+
     @GetMapping(path = "removeAlternativeStreetType")
     public void removeAlternativeStreetType(@RequestParam long id) {
         alternativeStreetTypeRepository.deleteById(id);
@@ -436,5 +415,18 @@ public class AddressController {
         return originalAddressRepository.findUnidentifiedStreetTypes();
     }
 
+    @GetMapping(path = "updateAddress")
+    public void updateAddress(@RequestParam long id, @RequestParam String post_Code, @RequestParam String district,
+                              @RequestParam String correct_City_Type, @RequestParam String city,
+                              @RequestParam String correct_Street_Type, @RequestParam String street,
+                              @RequestParam String house, @RequestParam String flat) {
+        System.out.println(id + post_Code + district + correct_City_Type + city + correct_Street_Type + street + house +
+                flat);
+//        originalAddressRepository.updateAddress(post_Code, district, correct_City_Type, city, correct_Street_Type,
+//                street, house, flat, id);
 
+        Addresses addresses = new Addresses(id, post_Code, district, correct_City_Type, city, correct_Street_Type,
+                street, house, flat);
+        originalAddressRepository.save(addresses);
+    }
 }

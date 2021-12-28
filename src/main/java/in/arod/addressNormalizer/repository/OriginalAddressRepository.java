@@ -4,6 +4,7 @@ import in.arod.addressNormalizer.model.CorrectTable;
 import in.arod.addressNormalizer.model.Addresses;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
@@ -56,4 +57,11 @@ public interface OriginalAddressRepository extends PagingAndSortingRepository<Ad
 
     @Query(nativeQuery = true, value = "SELECT * FROM alternativeStreetType")
     List<String> findUnidentifiedStreetTypes();
+
+    @Modifying
+    @Query(value = "UPDATE addressesView a SET a.PostCode = ?, a.Distric = ?, a.TypeCity = ?, a.City = ?," +
+            "a.TypeStreet = ?, a.Street = ?, a.House = ?, a.Flat = ? WHERE a.ID = ?",
+            nativeQuery = true)
+    void updateAddress(String PostCode, String Distric, String TypeCity, String City, String TypeStreet, String Street,
+                       String House, String Flat, String ID);
 }
