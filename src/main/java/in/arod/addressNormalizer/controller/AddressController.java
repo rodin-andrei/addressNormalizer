@@ -2,6 +2,7 @@ package in.arod.addressNormalizer.controller;
 
 import in.arod.addressNormalizer.controller.dto.OriginaObjectDto;
 import in.arod.addressNormalizer.model.Addresses;
+import in.arod.addressNormalizer.model.AddressesBackup;
 import in.arod.addressNormalizer.model.CorrectTable;
 import in.arod.addressNormalizer.model.city.AlternativeCityName;
 import in.arod.addressNormalizer.model.city.AlternativeCityType;
@@ -11,6 +12,7 @@ import in.arod.addressNormalizer.model.street.AlternativeStreetName;
 import in.arod.addressNormalizer.model.street.AlternativeStreetType;
 import in.arod.addressNormalizer.model.street.OriginalStreetName;
 import in.arod.addressNormalizer.model.street.OriginalStreetType;
+import in.arod.addressNormalizer.repository.OriginalAddressBackupRepository;
 import in.arod.addressNormalizer.repository.OriginalAddressRepository;
 import in.arod.addressNormalizer.repository.city.AlternativeCityNameRepository;
 import in.arod.addressNormalizer.repository.city.AlternativeCityTypeRepository;
@@ -47,6 +49,7 @@ public class AddressController {
     private final OriginalCityTypeRepository originalCityTypeRepository;
     private final OriginalStreetTypeRepository originalStreetTypeRepository;
     private final AlternativeStreetTypeRepository alternativeStreetTypeRepository;
+    private final OriginalAddressBackupRepository originalAddressBackupRepository;
 
     @GetMapping(path = "getAddresses")
     public Page<CorrectTable> getAddresses(@RequestParam int pageNumber, @RequestParam int sizeNumber,
@@ -420,13 +423,12 @@ public class AddressController {
                               @RequestParam String correct_City_Type, @RequestParam String city,
                               @RequestParam String correct_Street_Type, @RequestParam String street,
                               @RequestParam String house, @RequestParam String flat) {
-        System.out.println(id + post_Code + district + correct_City_Type + city + correct_Street_Type + street + house +
-                flat);
-//        originalAddressRepository.updateAddress(post_Code, district, correct_City_Type, city, correct_Street_Type,
-//                street, house, flat, id);
 
-        Addresses addresses = new Addresses(id, post_Code, district, correct_City_Type, city, correct_Street_Type,
-                street, house, flat);
-        originalAddressRepository.save(addresses);
+        if (originalAddressBackupRepository.findById(id).isEmpty()) {
+            originalAddressBackupRepository.save(new AddressesBackup(id, post_Code, district, correct_City_Type, city,
+                    correct_Street_Type, street, house, flat));
+        }
+        originalAddressRepository.save(new Addresses(id, post_Code, district, correct_City_Type, city,
+                correct_Street_Type, street, house, flat));
     }
 }
