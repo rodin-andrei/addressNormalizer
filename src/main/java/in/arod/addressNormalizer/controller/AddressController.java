@@ -34,6 +34,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -430,5 +431,13 @@ public class AddressController {
         }
         originalAddressRepository.save(new Addresses(id, post_Code, district, correct_City_Type, city,
                 correct_Street_Type, street, house, flat));
+    }
+
+    @GetMapping(path = "backupAddress")
+    public Optional<AddressesBackup> backupAddress(@RequestParam long id) {
+        if (originalAddressBackupRepository.findById(id).isPresent()) {
+            return originalAddressBackupRepository.findById(id);
+        }
+        return null;
     }
 }

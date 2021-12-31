@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "addresses_backup")
 @Data
 @Builder
 @NoArgsConstructor
@@ -17,10 +17,10 @@ public class AddressesBackup {
     private Long ID;
 
     @Column(name = "PostCode")
-    private String PostCode;
+    private String Post_Code;
 
-    @Column(name = "Distric")
-    private String Distric;
+    @Column(name = "District")
+    private String District;
 
     @Column(name = "TypeCity")
     private String TypeCity;

@@ -5,7 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "alternative_city_name")
 @Data
 @Builder
 @NoArgsConstructor

@@ -5,7 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "alternative_street_type")
 @Data
 @Builder
 @NoArgsConstructor

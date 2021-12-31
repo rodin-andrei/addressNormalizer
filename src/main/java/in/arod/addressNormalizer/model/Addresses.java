@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity
+@Entity(name = "addresses")
 @Data
 @Builder
 @NoArgsConstructor
@@ -21,8 +21,8 @@ public class Addresses implements Serializable {
     @Column(name = "PostCode")
     private String PostCode;
 
-    @Column(name = "Distric")
-    private String Distric;
+    @Column(name = "District")
+    private String District;
 
     @Column(name = "TypeCity")
     private String TypeCity;
